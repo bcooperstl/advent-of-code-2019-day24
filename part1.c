@@ -11,7 +11,6 @@
 // having fun with bit-manipulation. because why use character arrays when I can do everything in uint32_t
 uint32_t getNext(uint32_t current)
 {
-    printf("top - current is %d\n", current);
     /*
     positions: 01 02 03 04 05  shifts 00 01 02 03 04
                06 07 08 09 10  shifts 05 06 07 08 09
@@ -67,18 +66,18 @@ uint32_t getNext(uint32_t current)
     {
         if (current&(1<<(i-1)) && num_adjacent[i]!=1) // if there is a bug at i and not only one adjacent to it, kill the bug
         {
-            printf("killing bug at %d\n", i);
+            //printf("killing bug at %d\n", i);
             next=next^(1<<(i-1)); // flip the i-1 bit using XOR to kill the bug
         }
         else if ((!(current&(1<<(i-1)))) && (num_adjacent[i]==1 || num_adjacent[i]==2)) // if there is no bug at i and one or two to it, make a bug
         {
-            printf("spawning bug at %d\n", i);
+            //printf("spawning bug at %d\n", i);
             next=next^(1<<(i-1)); // flip the i-1 bit using XOR to spawn the bug
         }
-        else
-        {
-            printf("not doing anything to bug at %d with num-adjacent=%d current=%d masked_current=%d\n", i, num_adjacent[i], current, current&(1<<(i-1)));
-        }
+        //else
+        //{
+        //    printf("not doing anything to bug at %d with num-adjacent=%d current=%d masked_current=%d\n", i, num_adjacent[i], current, current&(1<<(i-1)));
+        //}
     }
     return next;
 }
